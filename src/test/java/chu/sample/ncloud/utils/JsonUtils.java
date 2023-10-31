@@ -2,10 +2,12 @@ package chu.sample.ncloud.utils;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.gson.Gson;
@@ -78,7 +80,7 @@ public class JsonUtils {
 	 * Stirng to Object
 	 * 
 	 * @param content
-	 * @param valueType
+
 	 * @return
 	 */
 	
@@ -87,7 +89,7 @@ public class JsonUtils {
 		T result = null;
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			result = mapper.readValue(content, typeReference);
+			result = (T) mapper.readValue(content, typeReference);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
